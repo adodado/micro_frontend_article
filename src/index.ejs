@@ -32,6 +32,8 @@
   <script type="systemjs-importmap">
     {
       "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js",
         "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.8.3/lib/system/single-spa.min.js"
       }
     }
@@ -42,14 +44,17 @@
   <!-- <script type="systemjs-importmap" src="/importmap.json"></script> -->
 
   <% if (isLocal) { %>
-  <script type="systemjs-importmap">
-    {
-      "imports": {
-        "@admcos/root-config": "//localhost:9000/admcos-root-config.js"
+    <script type="systemjs-importmap">
+      {
+        "imports": {
+          "@admcos/root-config": "http://localhost:9000/admcos-root-config.js",
+          "@admcos/nav-app": "http://localhost:9001/admcos-nav-app.js",
+          "@admcos/app1": "http://localhost:9002/admcos-app1.js",
+          "@admcos/app2": "http://localhost:9003/admcos-app2.js"
+        }
       }
-    }
-  </script>
-  <% } %>
+    </script>
+    <% } %>
 
   <!--
     If you need to support Angular applications, uncomment the script tag below to ensure only one instance of ZoneJS is loaded
@@ -68,7 +73,11 @@
   <% } %>
 </head>
 <body>
-  <main></main>
+  <div id="nav-container"></div>
+  <main>
+    <div id="app1-container"></div>
+    <div id="app2-container"></div>
+  </main>
   <script>
     System.import('@admcos/root-config');
   </script>
